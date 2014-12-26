@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+		<title>客户端版本检测</title>
+		<script src="http://qzs.qq.com/tencentvideo_v1/js/txv.core.min.js?v=20140730&max_age=2592000" type="text/javascript"></script>
+		<script src="http://qzs.qq.com/tencentvideo_v1/tvp/js/tvp.player_v2_txv_vod.js" type="text/javascript"></script>
+		<script>
+			function isTv(){
+				var ua = navigator.userAgent;
+				if(/letv/i.test(ua) || /SonyDTV/i.test(ua)){
+					return true;
+				}
+				else if(tvp.$.os.ipad && !/ipad/i.test(navigator.platform)){
+					return true;
+				}
+				else if(tvp.$.os.ipad && screen.width > 768){
+					return true;
+				}
+				else if(tvp.$.os.android && (/tv/i.test(ua) || screen.width > 768)){
+					return true;
+				}
+				return false;
+			}
+		</script>
+	</head>
+	<body>
+		<ul>
+			<li>浏览器标识：<script>document.write(navigator.userAgent);</script></li>
+			<li>浏览器版本：<script>document.write(tvp.$.browser.version);</script></li>
+			<li>是否有安装客户端：<script>document.write(QQLive.version.hasQQLiveOcx());</script></li>
+			<li>客户端版本号：<script>document.write(tvp.version.getOcx());</script></li>
+			<li>flash版本号：<script>document.write(tvp.version.getFlash());</script></li>
+			<li>平台标识：<script>document.write(navigator.platform);</script></li>
+			<li>是否在手Q里：<script>document.write(!!tvp.$.browser.MQQClient);</script></li>
+			<li>是否在微信里：<script>document.write(!!tvp.$.browser.WeChat);</script></li>
+			<li>是否在手Q浏览器里：<script>document.write(!!tvp.$.browser.MQQ);</script></li>
+			<li>是否支持touch事件：<script>document.write(!!('ontouchstart' in window));</script></li>
+			<li>屏幕分辨率：<script>document.write(screen.width + ' * ' + screen.height);</script></li>
+			<li>系统版本：<script>document.write(tvp.$.os.version);</script></li>
+			<li>cookie：<script>document.write(document.cookie);</script></li>
+			<!-- <li>当前是否在智能电视或盒子系统上浏览：<script>document.write(isTv());</script></li> -->
+		</ul>
+	</body>
+</html>
